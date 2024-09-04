@@ -3,7 +3,7 @@ import FeaturedPost from "@/components/blog/FeaturedPost";
 
 export default function Home() {
   return (
-    <div className="my-10 px-4">
+    <div className="my-10">
       <FeaturedPost />
 
       <div className="my-10">

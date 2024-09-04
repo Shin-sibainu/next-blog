@@ -4,9 +4,9 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const NotoSansJP = Noto_Sans_JP({ subsets: ["latin"] });
-
 //https://bookworm-light-astro.vercel.app/
+
+const NotoSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NextBlog",
@@ -21,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${NotoSansJP.className} bg-gray-50`}>
-        <div className="flex flex-col items-center min-h-screen mx-auto md:max-w-5xl">
+        <div className="flex flex-col min-h-screen">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-grow w-full">
+            <div className="max-w-6xl mx-auto px-4">{children}</div>
+          </main>
           <Footer />
         </div>
       </body>
