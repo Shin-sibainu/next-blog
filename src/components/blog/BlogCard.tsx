@@ -5,14 +5,12 @@ const BlogCard = () => {
   return (
     <div className="space-y-4 max-w-lg w-full mx-auto">
       <Link href={`/blog/slug1`} className="block overflow-hidden rounded-xl">
-        <div className="relative w-full pt-[56.25%] overflow-hidden group">
-          <Image
-            src={"" || "/sample.jpg"}
-            alt={"" || "post eyecatch"}
-            fill
-            className="object-cover transition-transform duration-300 hover:scale-105"
-          />
-        </div>
+        <Image
+          src={"" || "/sample.jpg"}
+          alt={"" || "post eye catch"}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
+        />
       </Link>
       <div className="flex items-center gap-6 text-slate-500">
         <Link href={"/about"} className="hover:text-teal-600 duration-150">
