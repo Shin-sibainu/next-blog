@@ -6,6 +6,8 @@ import Footer from "@/components/layout/Footer";
 
 const NotoSansJP = Noto_Sans_JP({ subsets: ["latin"] });
 
+//https://bookworm-light-astro.vercel.app/
+
 export const metadata: Metadata = {
   title: "NextBlog",
   description: "NextBlog was created ShinCode with Next.js and MicroCMS",

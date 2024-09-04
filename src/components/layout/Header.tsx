@@ -1,4 +1,4 @@
-import { navItems } from "@/config/navItems";
+import { headerNavItems } from "@/config/navItems";
 import Link from "next/link";
 
 const Header = () => {
@@ -12,11 +12,11 @@ const Header = () => {
 
       <nav className="hidden md:block">
         <ul className="flex gap-8 font-medium">
-          {navItems.map((item) => (
+          {headerNavItems.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="hover:text-teal-500 duration-150"
+                className="hover:text-teal-600 duration-150"
               >
                 {item.label}
               </Link>
