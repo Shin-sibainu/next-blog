@@ -4,12 +4,13 @@ import Link from "next/link";
 const BlogCard = () => {
   return (
     <div className="space-y-4 max-w-lg w-full mx-auto">
-      <Link href={`/blog/slug1`} className="block overflow-hidden rounded-xl">
+      <Link href={`/blog/slug1`}>
         <Image
           src={"" || "/sample.jpg"}
-          alt={"" || "post eye catch"}
-          fill
-          className="object-cover transition-transform duration-300 hover:scale-105"
+          alt={"" || "post eyecatch"}
+          width={300}
+          height={200}
+          className="object-cover w-full duration-300 hover:scale-105 rounded-xl"
         />
       </Link>
       <div className="flex items-center gap-6 text-slate-500">
