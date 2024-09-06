@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${NotoSansJP.className} bg-gray-50`}>
+      <body className={`${NotoSansJP.className} bg-neutral-50`}>
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow w-full">

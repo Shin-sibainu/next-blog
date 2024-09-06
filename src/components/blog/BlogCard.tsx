@@ -1,13 +1,20 @@
+import { formatRelativeDate } from "@/lib/dateUtils";
+import { Blog } from "@/types/microcms";
+import { truncateString } from "@/utils/stringUtils";
 import Image from "next/image";
 import Link from "next/link";
 
-const BlogCard = () => {
+type BlogCardProps = {
+  post: Blog;
+};
+
+const BlogCard = ({ post }: BlogCardProps) => {
   return (
-    <div className="space-y-4 max-w-lg w-full mx-auto">
-      <Link href={`/blog/slug1`}>
+    <div className="space-y-3 max-w-lg w-full mx-auto">
+      <Link href={`/blog/${post.slug}`}>
         <Image
-          src={"" || "/sample.jpg"}
-          alt={"" || "post eyecatch"}
+          src={post.eyecatch.url || "/sample.jpg"}
+          alt={"" || "post eye catch"}
           width={300}
           height={200}
           className="object-cover w-full duration-300 hover:scale-105 rounded-xl"
@@ -17,22 +24,24 @@ const BlogCard = () => {
         <Link href={"/about"} className="hover:text-teal-600 duration-150">
           ShinCode
         </Link>
-        <span>2024/09/04</span>
-        <Link href={"/tags"} className="hover:text-teal-600 duration-150">
-          Next.js
-        </Link>
+        <time>{formatRelativeDate(post.publishedAt)}</time>
+        {post.tags.map((tag) => (
+          <Link
+            key={tag.id}
+            href={`/tags/${tag.name}`}
+            className="hover:text-teal-600 duration-150"
+          >
+            {tag.name}
+          </Link>
+        ))}
       </div>
       <Link
-        href={"/blog/slug1"}
+        href={`/blog/${post.slug}`}
         className="inline-block hover:text-teal-600 duration-150"
       >
-        <h3 className="md:text-2xl font-medium">
-          How to study Modern Next.js App Router
-        </h3>
+        <h3 className="md:text-2xl font-medium">{post.title}</h3>
       </Link>
-      <p className="text-slate-500">
-        Nemo vel ad consectetur namut rutrum ex, venenatis sollicitudin urna.
-      </p>
+      <p className="text-slate-500">{truncateString(post.description, 40)}</p>
     </div>
   );
 };
