@@ -27,5 +27,10 @@ export const getBlogPosts = async (queries?: MicroCMSQueries) => {
     },
   });
 
-  return response.contents;
+  return {
+    contents: response.contents,
+    totalCount: response.totalCount - 1,
+    offset: response.offset,
+    limit: response.limit,
+  };
 };
