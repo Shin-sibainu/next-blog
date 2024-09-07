@@ -25,15 +25,13 @@ const FeaturedPost = ({ post }: FeaturedPostProps) => {
           ShinCode
         </Link>
         <time>{formatRelativeDate(post.publishedAt)}</time>
-        {post.tags.map((tag) => (
-          <Link
-            key={tag.id}
-            href={`/tags/${tag.name}`}
-            className="hover:text-teal-600 duration-150"
-          >
-            {tag.name}
-          </Link>
-        ))}
+        <Link
+          key={post.category.id}
+          href={`/category/${post.category.name}`}
+          className="hover:text-teal-600 duration-150"
+        >
+          {post.category.name}
+        </Link>
       </div>
       <Link
         href={`/blog/${post.slug}`}

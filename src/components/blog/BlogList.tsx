@@ -2,13 +2,13 @@ import { Blog } from "@/types/microcms";
 import BlogCard from "./BlogCard";
 
 type BlogListProps = {
-  initialPosts: Blog[];
+  posts: Blog[];
 };
 
-const BlogList = ({ initialPosts }: BlogListProps) => {
+const BlogList = ({ posts }: BlogListProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-14">
-      {initialPosts.map((post) => (
+      {posts.map((post) => (
         <BlogCard key={post.id} post={post} />
       ))}
     </div>

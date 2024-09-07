@@ -20,7 +20,7 @@ export default async function Home() {
       </div>
 
       <div className="my-10">
-        <BlogList initialPosts={posts} />
+        <BlogList posts={posts} />
       </div>
 
       <div>
