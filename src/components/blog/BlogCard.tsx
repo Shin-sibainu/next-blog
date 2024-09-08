@@ -1,9 +1,10 @@
 import { formatRelativeDate } from "@/lib/dateUtils";
 import { Blog } from "@/types/microcms";
 import { truncateString } from "@/utils/stringUtils";
+import { CalendarDateRangeIcon } from "@heroicons/react/16/solid";
+import { Squares2X2Icon, UserCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-
 type BlogCardProps = {
   post: Blog;
 };
@@ -20,18 +21,31 @@ const BlogCard = ({ post }: BlogCardProps) => {
           className="object-cover w-full duration-300 hover:scale-105 rounded-xl"
         />
       </Link>
-      <div className="flex items-center gap-6 text-slate-500">
-        <Link href={"/about"} className="hover:text-teal-600 duration-150">
-          ShinCode
-        </Link>
-        <time>{formatRelativeDate(post.publishedAt)}</time>
-        <Link
-          key={post.category.id}
-          href={`/category/${post.category.name}`}
-          className="hover:text-teal-600 duration-150"
-        >
-          {post.category.name}
-        </Link>
+      <div className="flex items-center gap-6 text-slate-500 text-base">
+        <div className="flex items-center gap-1">
+          <UserCircleIcon className="size-5" />
+
+          <Link href={"/about"} className="hover:text-teal-600 duration-150">
+            ShinCode
+          </Link>
+        </div>
+        <time>
+          <div className="flex items-center gap-1">
+            <CalendarDateRangeIcon className="size-5" />
+            <span>{formatRelativeDate(post.publishedAt)}</span>
+          </div>
+        </time>
+
+        <div className="flex items-center gap-1">
+          <Squares2X2Icon className="size-5" />
+          <Link
+            key={post.category.id}
+            href={`/category/${post.category.name}`}
+            className="hover:text-teal-600 duration-150"
+          >
+            {post.category.name}
+          </Link>
+        </div>
       </div>
       <Link
         href={`/blog/${post.slug}`}

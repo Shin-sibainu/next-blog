@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
     "dayjs": "^1.11.13",
     "microcms-js-sdk": "^3.1.2",
     "next": "14.2.7",
