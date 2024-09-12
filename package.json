@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "dayjs": "^1.11.13",
+    "html-react-parser": "^5.1.16",
     "microcms-js-sdk": "^3.1.2",
     "next": "14.2.7",
     "react": "^18",

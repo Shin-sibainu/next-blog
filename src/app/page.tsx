@@ -1,3 +1,4 @@
+import BlogCard from "@/components/blog/BlogCard";
 import BlogList from "@/components/blog/BlogList";
 import FeaturedPost from "@/components/blog/FeaturedPost";
 import Pagination from "@/components/ui/Pagination";
@@ -16,7 +17,7 @@ export default async function Home() {
   return (
     <div className="my-10 max-w-3xl mx-auto">
       <div>
-        <FeaturedPost post={featuredPost} />
+        <BlogCard post={featuredPost} variant="featured" />
       </div>
 
       <div className="my-10">

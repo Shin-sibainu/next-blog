@@ -1,76 +1,63 @@
+import { getDetailPost } from "@/lib/microcms";
+import { formatRelativeDate } from "@/lib/dateUtils";
+
 import Image from "next/image";
 import Link from "next/link";
 
-const BlogDetailPage = () => {
+import { CalendarDateRangeIcon } from "@heroicons/react/16/solid";
+import { Squares2X2Icon, UserCircleIcon } from "@heroicons/react/24/outline";
+
+import parse from "html-react-parser";
+import StyledContent from "@/components/common/StyledContent";
+
+const BlogDetailPage = async ({ params }: { params: { slug: string } }) => {
+  const slug = params.slug;
+  const post = await getDetailPost(slug);
+
   return (
     <div className="flex flex-col items-center md:my-16 space-y-6 max-w-3xl mx-auto">
       <div className="text-center">
-        <h2 className="text-2xl md:text-4xl font-bold">
-          How to study Modern Next.js App Router
-        </h2>
+        <h2 className="text-2xl md:text-4xl font-bold">{post.title}</h2>
       </div>
 
-      <div className="flex items-center gap-6 text-slate-500">
-        <Link href={"/about"} className="hover:text-teal-600 duration-150">
-          ShinCode
-        </Link>
-        <span>2024/09/04</span>
-        <Link href={"/tags"} className="hover:text-teal-600 duration-150">
-          Next.js
-        </Link>
+      <div className="flex items-center gap-6 text-slate-500 text-base">
+        <div className="flex items-center gap-1">
+          <UserCircleIcon className="size-5" />
+
+          <Link href={"/about"} className="hover:text-teal-600 duration-150">
+            ShinCode
+          </Link>
+        </div>
+        <time>
+          <div className="flex items-center gap-1">
+            <CalendarDateRangeIcon className="size-5" />
+            <span>{formatRelativeDate(post.publishedAt)}</span>
+          </div>
+        </time>
+
+        <div className="flex items-center gap-1">
+          <Squares2X2Icon className="size-5" />
+          <Link
+            key={post.category.id}
+            href={`/category/${post.category.name}`}
+            className="hover:text-teal-600 duration-150"
+          >
+            {post.category.name}
+          </Link>
+        </div>
       </div>
 
       <div className="w-full">
         <Image
-          src={"" || "/sample.jpg"}
-          alt={"" || "post eye catch"}
-          width={1080}
-          height={640}
+          src={post.eyecatch.url || "/sample.jpg"}
+          alt={post.title || "post eye catch"}
+          width={1200}
+          height={630}
           className="object-cover rounded-xl"
         />
       </div>
 
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta tempora
-          possimus, ad iure aspernatur eligendi error odit odio, inventore
-          asperiores explicabo deleniti ut rem obcaecati, officia iusto sapiente
-          natus tempore rerum quaerat quibusdam. Voluptates perspiciatis maxime
-          ad possimus deserunt provident vero obcaecati tempora commodi dolore
-          voluptas a excepturi dicta, fugiat cum impedit qui aut quod error
-          blanditiis placeat nam. Maxime repellat eius cumque aliquam quis
-          suscipit libero ex a vitae ullam voluptatibus nemo non placeat
-          perspiciatis asperiores aut eligendi totam inventore sint, qui est. Ea
-          id dolore est hic suscipit! Qui suscipit nisi aspernatur, consequatur
-          amet nostrum perferendis beatae dicta.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta tempora
-          possimus, ad iure aspernatur eligendi error odit odio, inventore
-          asperiores explicabo deleniti ut rem obcaecati, officia iusto sapiente
-          natus tempore rerum quaerat quibusdam. Voluptates perspiciatis maxime
-          ad possimus deserunt provident vero obcaecati tempora commodi dolore
-          voluptas a excepturi dicta, fugiat cum impedit qui aut quod error
-          blanditiis placeat nam. Maxime repellat eius cumque aliquam quis
-          suscipit libero ex a vitae ullam voluptatibus nemo non placeat
-          perspiciatis asperiores aut eligendi totam inventore sint, qui est. Ea
-          id dolore est hic suscipit! Qui suscipit nisi aspernatur, consequatur
-          amet nostrum perferendis beatae dicta.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta tempora
-          possimus, ad iure aspernatur eligendi error odit odio, inventore
-          asperiores explicabo deleniti ut rem obcaecati, officia iusto sapiente
-          natus tempore rerum quaerat quibusdam. Voluptates perspiciatis maxime
-          ad possimus deserunt provident vero obcaecati tempora commodi dolore
-          voluptas a excepturi dicta, fugiat cum impedit qui aut quod error
-          blanditiis placeat nam. Maxime repellat eius cumque aliquam quis
-          suscipit libero ex a vitae ullam voluptatibus nemo non placeat
-          perspiciatis asperiores aut eligendi totam inventore sint, qui est. Ea
-          id dolore est hic suscipit! Qui suscipit nisi aspernatur, consequatur
-          amet nostrum perferendis beatae dicta.
-        </p>
-      </div>
+      <StyledContent content={post.content} />
     </div>
   );
 };

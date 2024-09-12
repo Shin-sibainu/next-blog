@@ -7,7 +7,7 @@ const Header = () => {
       <div className="flex items-center justify-between ">
         <div>
           <Link href="/" className="md:text-3xl text-2xl font-bold">
-            NextBlog🚀
+            Three InSights
           </Link>
         </div>
 

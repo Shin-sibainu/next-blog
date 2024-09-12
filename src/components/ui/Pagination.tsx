@@ -1,3 +1,4 @@
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -43,7 +44,11 @@ export default function Pagination({
 
   return (
     <div className="flex items-center justify-center gap-3">
-      {currentPage > 1 && <PageLink page={currentPage - 1}>Prev</PageLink>}
+      {currentPage > 1 && (
+        <PageLink page={currentPage - 1}>
+          <ArrowLeftIcon className="size-6" />
+        </PageLink>
+      )}
       <div className="flex items-center gap-3">
         {pageNumbers.map((number) => (
           <PageLink key={number} page={number}>
@@ -52,7 +57,9 @@ export default function Pagination({
         ))}
       </div>
       {currentPage < totalPages && (
-        <PageLink page={currentPage + 1}>Next</PageLink>
+        <PageLink page={currentPage + 1}>
+          <ArrowRightIcon className="size-6" />
+        </PageLink>
       )}
     </div>
   );

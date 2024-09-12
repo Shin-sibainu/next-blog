@@ -1,4 +1,9 @@
-import { createClient, MicroCMSQueries } from "microcms-js-sdk";
+import { Blog } from "@/types/microcms";
+import {
+  createClient,
+  MicroCMSContentId,
+  MicroCMSQueries,
+} from "microcms-js-sdk";
 
 const client = createClient({
   serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN || "",
@@ -33,4 +38,46 @@ export const getBlogPosts = async (queries?: MicroCMSQueries) => {
     offset: response.offset,
     limit: response.limit,
   };
+};
+
+//詳細記事の取得
+export const getDetailPost = async (
+  slug: string,
+  queries?: MicroCMSQueries
+) => {
+  try {
+    //まずはslugを利用して記事を探す
+    const listResponse = await client.getList<Blog>({
+      endpoint: "next-blog",
+      queries: {
+        filters: `slug[equals]${slug}`,
+        limit: 1,
+      },
+    });
+
+    if (listResponse.contents.length > 0) {
+      //slugからGetした記事情報のid = contentId
+      const contentId = listResponse.contents[0].id;
+
+      const detailResponse = await client.getListDetail<Blog>({
+        endpoint: "next-blog",
+        contentId,
+        queries,
+      });
+
+      return detailResponse;
+    }
+
+    // slugで見つからない場合は、直接contentIdとして使用
+    const detailResponse = await client.getListDetail<Blog>({
+      endpoint: "next-blog",
+      contentId: slug,
+      queries,
+    });
+
+    return detailResponse;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };

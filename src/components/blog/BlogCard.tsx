@@ -5,19 +5,27 @@ import { CalendarDateRangeIcon } from "@heroicons/react/16/solid";
 import { Squares2X2Icon, UserCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+
 type BlogCardProps = {
   post: Blog;
+  variant?: "featured" | "regular";
 };
 
-const BlogCard = ({ post }: BlogCardProps) => {
+const BlogCard = ({ post, variant = "regular" }: BlogCardProps) => {
+  const isFeatured = variant === "featured";
+
   return (
-    <div className="space-y-3 max-w-lg w-full mx-auto">
+    <div
+      className={`space-y-3 ${
+        isFeatured ? "mx-auto" : "max-w-lg w-full mx-auto"
+      }`}
+    >
       <Link href={`/blog/${post.slug}`}>
         <Image
           src={post.eyecatch.url || "/sample.jpg"}
-          alt={"" || "post eye catch"}
-          width={300}
-          height={200}
+          alt={post.title || "post eyecatch"}
+          width={isFeatured ? 1280 : 400}
+          height={isFeatured ? 720 : 300}
           className="object-cover w-full duration-300 hover:scale-105 rounded-xl"
         />
       </Link>
@@ -51,9 +59,15 @@ const BlogCard = ({ post }: BlogCardProps) => {
         href={`/blog/${post.slug}`}
         className="inline-block hover:text-teal-600 duration-150"
       >
-        <h3 className="md:text-2xl font-medium">{post.title}</h3>
+        <h3
+          className={`${
+            isFeatured ? "md:text-3xl" : "md:text-2xl"
+          } font-medium`}
+        >
+          {post.title}
+        </h3>
       </Link>
-      <p className="text-slate-500">{truncateString(post.description, 40)}</p>
+      <p className="text-slate-500">{truncateString(post.description, 60)}</p>
     </div>
   );
 };
