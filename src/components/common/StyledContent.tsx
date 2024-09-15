@@ -87,7 +87,7 @@ const StyledContent = ({ content }: StyledContentProps) => {
             );
           case "p":
             return (
-              <p className="my-2 leading-relaxed">
+              <p className="my-4 leading-relaxed">
                 {domToReact(domNode.children as DOMNode[], options)}
               </p>
             );

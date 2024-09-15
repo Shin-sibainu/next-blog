@@ -81,3 +81,15 @@ export const getDetailPost = async (
     throw error;
   }
 };
+
+//全てのタグを取得
+export const getAllTags = async () => {
+  const response = await client.getList({
+    endpoint: "tags",
+  });
+
+  return {
+    contents: response.contents,
+    totalCount: response.totalCount,
+  };
+};
