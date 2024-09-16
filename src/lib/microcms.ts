@@ -93,3 +93,30 @@ export const getAllTags = async () => {
     totalCount: response.totalCount,
   };
 };
+
+//詳細タグから記事一覧の取得
+export const getPostsByTagSlug = async (
+  slug: string,
+  queries?: MicroCMSQueries
+) => {
+  //slugからそのtagIdを取得
+  const response = await client.getList({
+    endpoint: "tags",
+    queries: { filters: `slug[equals]${slug}`, limit: 1 },
+  });
+
+  //slugからGetした記事情報のid = contentId
+  const tagId = response.contents[0].id;
+
+  const postsByTagId = await client.getList({
+    endpoint: "next-blog",
+    queries: {
+      filters: `tags[contains]${tagId}`,
+    },
+  });
+
+  return {
+    contents: postsByTagId.contents,
+    totalCount: postsByTagId.totalCount,
+  };
+};
