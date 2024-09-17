@@ -47,11 +47,11 @@ const BlogCard = ({ post, variant = "regular" }: BlogCardProps) => {
         <div className="flex items-center gap-1">
           <Squares2X2Icon className="size-5" />
           <Link
-            key={post.category.id}
-            href={`/category/${post.category.name}`}
+            key={post.categories.id}
+            href={`/categories/${post.categories.slug}`}
             className="hover:text-teal-600 duration-150"
           >
-            {post.category.name}
+            {post.categories.name}
           </Link>
         </div>
       </div>

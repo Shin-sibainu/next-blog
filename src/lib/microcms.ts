@@ -86,6 +86,9 @@ export const getDetailPost = async (
 export const getAllTags = async () => {
   const response = await client.getList({
     endpoint: "tags",
+    queries: {
+      orders: "publishedAt",
+    },
   });
 
   return {
@@ -112,11 +115,57 @@ export const getPostsByTagSlug = async (
     endpoint: "next-blog",
     queries: {
       filters: `tags[contains]${tagId}`,
+      ...queries,
     },
   });
 
   return {
     contents: postsByTagId.contents,
     totalCount: postsByTagId.totalCount,
+  };
+};
+
+//全てのカテゴリを取得
+export const getAllCategories = async () => {
+  const response = await client.getList({
+    endpoint: "categories",
+    queries: {
+      orders: "publishedAt",
+    },
+  });
+
+  return {
+    contents: response.contents,
+    totalCount: response.totalCount,
+  };
+};
+
+export const getPostsByCategorySlug = async (
+  slug: string,
+  queries?: MicroCMSQueries
+) => {
+  //slugからそのslugのカテゴリ情報の取得
+  const response = await client.getList({
+    endpoint: "categories",
+    queries: {
+      filters: `slug[equals]${slug}`,
+      limit: 1,
+    },
+  });
+
+  //カテゴリ情報からidを取り出す
+  const categoryId = response.contents[0].id;
+
+  const detailCategoryResponse = await client.getList({
+    endpoint: "next-blog",
+    queries: {
+      filters: `categories[equals]${categoryId}`,
+      ...queries,
+    },
+  });
+
+  return {
+    contents: detailCategoryResponse.contents,
+    totalCount: detailCategoryResponse.totalCount,
   };
 };

@@ -1,14 +1,13 @@
 import BlogList from "@/components/blog/BlogList";
 import PageHeader from "@/components/common/PageHeader";
 import Pagination from "@/components/ui/Pagination";
-import { getPostsByTagSlug } from "@/lib/microcms";
-import React from "react";
+import { getPostsByCategorySlug } from "@/lib/microcms";
 
 const POSTS_PER_PAGE = 4;
 
-const DetailTag = async ({ params }: { params: { slug: string } }) => {
+const DetailCategory = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug;
-  const { contents: posts, totalCount } = await getPostsByTagSlug(slug, {
+  const { contents: posts, totalCount } = await getPostsByCategorySlug(slug, {
     limit: POSTS_PER_PAGE,
   });
 
@@ -31,4 +30,4 @@ const DetailTag = async ({ params }: { params: { slug: string } }) => {
   );
 };
 
-export default DetailTag;
+export default DetailCategory;

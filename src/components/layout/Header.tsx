@@ -23,26 +23,6 @@ const Header = () => {
                 </Link>
               </li>
             ))}
-            {/* <li>
-            <Link href="/" className="hover:text-teal-500 duration-150">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="hover:text-teal-500 duration-150">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/tags" className="hover:text-teal-500 duration-150">
-              Tags
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="hover:text-teal-500 duration-150">
-              Contact
-            </Link>
-          </li> */}
           </ul>
         </nav>
       </div>

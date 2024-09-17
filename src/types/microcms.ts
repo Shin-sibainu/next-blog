@@ -27,7 +27,7 @@ export type Blog = MicroCMSContent & {
     height: number;
     width: string;
   };
-  category: (Category & MicroCMSContentId);
+  categories: Category & MicroCMSContentId;
   tags: (Tag & MicroCMSContentId)[];
   description: string;
 };
