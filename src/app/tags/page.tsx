@@ -1,6 +1,11 @@
 import PageHeader from "@/components/common/PageHeader";
 import { getAllTags } from "@/lib/microcms";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Tags",
+};
 
 const Tags = async () => {
   const { contents } = await getAllTags();

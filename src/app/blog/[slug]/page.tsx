@@ -1,14 +1,40 @@
 import { getDetailPost } from "@/lib/microcms";
 import { formatRelativeDate } from "@/lib/dateUtils";
 
+import type { Metadata, ResolvingMetadata } from "next";
+
 import Image from "next/image";
 import Link from "next/link";
 
 import { CalendarDateRangeIcon } from "@heroicons/react/16/solid";
 import { Squares2X2Icon, UserCircleIcon } from "@heroicons/react/24/outline";
 
-import parse from "html-react-parser";
 import StyledContent from "@/components/common/StyledContent";
+
+export async function generateMetadata({
+  params,
+  parent,
+}: {
+  params: { slug: string };
+  parent: ResolvingMetadata;
+}): Promise<Metadata> {
+  const slug = params.slug;
+  const post = await getDetailPost(slug);
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      images: [
+        {
+          url: post.eyecatch.url,
+          height: post.eyecatch.height,
+          width: post.eyecatch.width,
+        },
+      ],
+    },
+  };
+}
 
 const BlogDetailPage = async ({ params }: { params: { slug: string } }) => {
   const slug = params.slug;
@@ -38,11 +64,11 @@ const BlogDetailPage = async ({ params }: { params: { slug: string } }) => {
         <div className="flex items-center gap-1">
           <Squares2X2Icon className="size-5" />
           <Link
-            key={post.category.id}
-            href={`/category/${post.category.name}`}
+            key={post.categories.id}
+            href={`/categories/${post.categories.name}`}
             className="hover:text-teal-600 duration-150"
           >
-            {post.category.name}
+            {post.categories.name}
           </Link>
         </div>
       </div>
