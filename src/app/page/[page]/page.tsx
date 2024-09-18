@@ -1,7 +1,20 @@
 import BlogList from "@/components/blog/BlogList";
 import Pagination from "@/components/ui/Pagination";
 import { getBlogPosts } from "@/lib/microcms";
+import { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { page: string };
+}): Promise<Metadata> {
+  const currentPage = Number(params.page);
+
+  return {
+    title: `${currentPage}ページ目`,
+  };
+}
 
 const POSTS_PER_PAGE = 4;
 

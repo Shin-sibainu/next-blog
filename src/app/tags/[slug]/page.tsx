@@ -2,7 +2,23 @@ import BlogList from "@/components/blog/BlogList";
 import PageHeader from "@/components/common/PageHeader";
 import Pagination from "@/components/ui/Pagination";
 import { getPostsByTagSlug } from "@/lib/microcms";
+import { Metadata, ResolvingMetadata } from "next";
 import React from "react";
+
+export async function generateMetadata({
+  params,
+  parent,
+}: {
+  params: { slug: string };
+  parent: ResolvingMetadata;
+}): Promise<Metadata> {
+  const slug = params.slug;
+  const capitalizedSlug = slug.charAt(0).toUpperCase() + slug.slice(1);
+
+  return {
+    title: capitalizedSlug,
+  };
+}
 
 const POSTS_PER_PAGE = 4;
 
