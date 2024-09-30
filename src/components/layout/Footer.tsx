@@ -4,9 +4,9 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="w-full bg-slate-900 py-6 md:py-10 md:mt-10">
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-6">
         <nav>
-          <ul className="flex items-center justify-center gap-10 text-slate-300">
+          <ul className="flex items-center justify-center gap-10 text-slate-300 text-sm md:text-base">
             {footerNavItems.map((item) => (
               <li key={item.href}>
                 <Link
@@ -19,8 +19,8 @@ const Footer = () => {
             ))}
           </ul>
         </nav>
-        <div></div>
-        <div className="text-slate-300">
+
+        <div className="text-slate-300 text-sm md:text-base">
           <span>
             Copyright © {new Date().getFullYear()} Created By ShinCode
           </span>

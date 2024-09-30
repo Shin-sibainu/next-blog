@@ -1,6 +1,7 @@
 import { about } from "@/config/about";
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About",
@@ -40,6 +41,15 @@ const About = () => {
 
           <div className="text-gray-600">
             開発以外にも無料でご相談やお悩み事も承っております。下のボタンからコンタクトフォームからご連絡お願いいたします。
+          </div>
+
+          <div>
+            <Link
+              href={"/contact"}
+              className="bg-teal-600 px-4 py-2 rounded-lg hover:bg-teal-700 duration-300"
+            >
+              <span className="inline text-white">Contact Me</span>
+            </Link>
           </div>
         </div>
       </div>
