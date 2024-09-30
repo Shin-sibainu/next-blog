@@ -26,11 +26,11 @@ const FeaturedPost = ({ post }: FeaturedPostProps) => {
         </Link>
         <time>{formatRelativeDate(post.publishedAt)}</time>
         <Link
-          key={post.category.id}
-          href={`/category/${post.category.name}`}
+          key={post.categories.id}
+          href={`/category/${post.categories.name}`}
           className="hover:text-teal-600 duration-150"
         >
-          {post.category.name}
+          {post.categories.name}
         </Link>
       </div>
       <Link

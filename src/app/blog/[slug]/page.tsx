@@ -13,10 +13,8 @@ import StyledContent from "@/components/common/StyledContent";
 
 export async function generateMetadata({
   params,
-  parent,
 }: {
   params: { slug: string };
-  parent: ResolvingMetadata;
 }): Promise<Metadata> {
   const slug = params.slug;
   const post = await getDetailPost(slug);
