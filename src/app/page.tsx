@@ -1,6 +1,5 @@
 import BlogCard from "@/components/blog/BlogCard";
 import BlogList from "@/components/blog/BlogList";
-import FeaturedPost from "@/components/blog/FeaturedPost";
 import Pagination from "@/components/ui/Pagination";
 import { getBlogPosts, getFeaturedPost } from "@/lib/microcms";
 
